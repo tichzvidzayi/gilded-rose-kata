@@ -1,14 +1,28 @@
-Hi and welcome to team Gilded Rose.
+Hi and welcome to GrowthPhysics. We are a development agency who helps our
+clients improve both their systems as well as the quality of their code. First,
+its worthwhile to mention the things we value:
 
-As you know, we are a small inn with a prime location in a prominent city ran
-by a friendly innkeeper named Allison.  We also buy and sell only the finest
-goods. Unfortunately, our goods are constantly degrading in quality as they
-approach their sell by date.
+1. **Readability:** We value readable code that is easily understood by the
+   next developer.
+2. **Maintainability:** We value code that is easily maintained.
+3. **Extendability:** We value code that is easy to extend to new use cases.
+4. **Testing:** We value code that is well tested as manual testing is slow and
+   prone to errors.
 
-We have a system in place that updates our inventory for us. It was developed
-by a no-nonsense type named Leeroy, who has moved on to new adventures. Your
-task is to add the new feature to our system so that we can begin selling a
-new category of items.
+We have recently engaged with a client, The Gilded Rose, who has hired us to
+update their inventory management system. The Gilded Rose is a small inn with a
+prime location in a prominent city ran by a friendly innkeeper named Allison.
+They only buy and sell only the finest goods. Unfortunately, our goods are
+constantly degrading in quality as they approach their sell by date.
+
+Prior to our engagement, The Gilded Rose hired an independent developer named
+Leeroy to build their inventory management system. Leeroy was a no-nonsense
+type (and a bit gung-ho) who has moved on to new adventures. We will be taking
+over updating, supporting, and maintaining the inventory management system he
+built moving forward.
+
+Our first task is to add a new feature to the inventory management system so
+that The Gilded Rose can start selling a new category of item.
 
 First an introduction to our system:
 
