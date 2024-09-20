@@ -7,9 +7,11 @@ function Item(name, sell_in, quality) {
 const MAX_QUALITY = 50;
 const SULFURAS_QUALITY = 80;
 
+const items = []; // Changed to const since items should not be reassigned
+
 function update_quality() {
   for (let i = 0; i < items.length; i++) {
-    const item = items[i];
+    const item = items[i]; // Using const for item since it won't be reassigned
     switch (item.name) {
       case "Sulfuras, Hand of Ragnaros":
         // Do nothing; Sulfuras does not change
@@ -43,9 +45,8 @@ function update_quality() {
         break;
     }
 
-    // Update sell_in value
     if (item.name !== "Sulfuras, Hand of Ragnaros") {
-      item.sell_in--;
+      item.sell_in--; // sell_in is updated for all items except Sulfuras
     }
 
     // Post-sell-in quality handling
@@ -68,5 +69,3 @@ function update_quality() {
     }
   }
 }
-
-var items = [];
