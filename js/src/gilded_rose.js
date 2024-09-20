@@ -4,7 +4,7 @@ class Item {
     this.sell_in = sell_in;
     this.quality = quality;
   }
-}
+} // Do not change, to remain the same
 
 const items = [];
 
