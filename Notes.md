@@ -5,8 +5,8 @@ Author: Tich Zvidzayi 20/Sept/2024  09:08 UTC
 - Inline comments helps with understanding and readability 
 
 ##  Maintainability
-The separation of logic for different item types allows for easier modifications in the future. Adding new item types or changing the behavior of existing ones would be straightforward.
-Constants (MAX_QUALITY and SULFURAS_QUALITY) are defined at the top, making it easier to manage limits across the code.
+ - The separation of logic for different item types allows for easier modifications in the future. 
+- Constants (MAX_QUALITY and SULFURAS_QUALITY) help to make it easier to manage limits.
 
 ## Extendability
 The structure allows for easy extension. For example, you can add additional case statements in the switch block if new item types are introduced.
