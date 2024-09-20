@@ -1,90 +1,72 @@
-class Item {
-  constructor(name, sell_in, quality) {
-    this.name = name;
-    this.sell_in = sell_in;
-    this.quality = quality;
-  }
-} // Do not change, to remain the same
-
-const items = [];
+function Item(name, sell_in, quality) {
+  this.name = name;
+  this.sell_in = sell_in;
+  this.quality = quality;
+}
 
 const MAX_QUALITY = 50;
 const SULFURAS_QUALITY = 80;
 
 function update_quality() {
-  items.forEach(item => {
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
     switch (item.name) {
       case "Sulfuras, Hand of Ragnaros":
-        // Legendary item does not change
+        // Do nothing; Sulfuras does not change
         break;
       case "Aged Brie":
-        updateAgedBrie(item);
+        if (item.quality < MAX_QUALITY) {
+          item.quality++;
+        }
         break;
       case "Backstage passes to a TAFKAL80ETC concert":
-        updateBackstagePasses(item);
+        if (item.quality < MAX_QUALITY) {
+          item.quality++;
+          if (item.sell_in < 11 && item.quality < MAX_QUALITY) {
+            item.quality++;
+          }
+          if (item.sell_in < 6 && item.quality < MAX_QUALITY) {
+            item.quality++;
+          }
+        }
+        if (item.sell_in <= 0) {
+          item.quality = 0; // Quality drops to 0 after the concert
+        }
         break;
       case "Conjured":
-        updateConjured(item);
+        item.quality = Math.max(0, item.quality - 2); // Degrade twice as fast
         break;
       default:
-        updateNormalItem(item);
+        if (item.quality > 0) {
+          item.quality--; // Normal items degrade by 1
+        }
         break;
     }
 
-    // Update sell_in and handle quality degradation after sell date
-    item.sell_in -= 1;
+    // Update sell_in value
+    if (item.name !== "Sulfuras, Hand of Ragnaros") {
+      item.sell_in--;
+    }
+
+    // Post-sell-in quality handling
     if (item.sell_in < 0) {
-      handlePostSellIn(item);
-    }
-  });
-}
-
-function updateAgedBrie(item) {
-  if (item.quality < MAX_QUALITY) {
-    item.quality += 1;
-  }
-}
-
-function updateBackstagePasses(item) {
-  if (item.quality < MAX_QUALITY) {
-    item.quality += 1;
-    if (item.sell_in < 11) {
-      if (item.quality < MAX_QUALITY) {
-        item.quality += 1;
-      }
-    }
-    if (item.sell_in < 6) {
-      if (item.quality < MAX_QUALITY) {
-        item.quality += 1;
+      switch (item.name) {
+        case "Aged Brie":
+          if (item.quality < MAX_QUALITY) {
+            item.quality++; // Increases in quality after sell date
+          }
+          break;
+        case "Backstage passes to a TAFKAL80ETC concert":
+          item.quality = 0; // Quality drops to 0 after the concert
+          break;
+        default:
+          if (item.quality > 0) {
+            item.quality--; // Normal items degrade by 1 more
+          }
+          break;
       }
     }
   }
-  if (item.sell_in < 0) {
-    item.quality = 0; // Quality drops to 0 after the concert
-  }
 }
 
-function updateNormalItem(item) {
-  if (item.quality > 0) {
-    item.quality -= 1;
-  }
-}
-
-function updateConjured(item) {
-  if (item.quality > 0) {
-    item.quality -= 2; // conjured inventory/items degrade two times faster
-  }
-}
-
-function handlePostSellIn(item) {
-  if (
-    item.name !== "Aged Brie" &&
-    item.name !== "Backstage passes to a TAFKAL80ETC concert"
-  ) {
-    if (item.quality > 0) {
-      item.quality -= 1;
-    }
-  } else if (item.name === "Aged Brie") {
-    updateAgedBrie(item);
-  }
-}
+var items = [];
